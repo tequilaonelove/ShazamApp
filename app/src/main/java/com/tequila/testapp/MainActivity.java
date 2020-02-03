@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.tequila.testapp.adapters.ItemAdapter;
 import com.tequila.testapp.models.ItemList;
 
 import org.json.JSONArray;
@@ -17,8 +18,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
-import adapters.AdapterItem;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -28,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     public OkHttpClient client;
     public Context context;
     public RecyclerView recyclerView;
-    public AdapterItem adapterItem;
+    public ItemAdapter adapterItem;
     public ArrayList<ItemList> arrayList;
     public long time;
 
@@ -89,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(Object o) {
             if (o != null) {
                 //startTimer();
-                adapterItem = new AdapterItem(context, arrayList);
+                adapterItem = new ItemAdapter(context, arrayList);
                 recyclerView.setAdapter(adapterItem);
                 //stopTimer("Adapter");
             }

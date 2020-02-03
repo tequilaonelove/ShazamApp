@@ -1,8 +1,7 @@
-package adapters;
+package com.tequila.testapp.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.icu.util.TimeUnit;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,12 +21,12 @@ import com.tequila.testapp.models.ItemList;
 import java.util.ArrayList;
 
 
-public class AdapterItem extends RecyclerView.Adapter<AdapterItem.MyViewHolder> {
+public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> {
 
     private Context context;
     private ArrayList<ItemList> arrayList;
 
-    public AdapterItem(Context context, ArrayList<ItemList> arrayList) {
+    public ItemAdapter(Context context, ArrayList<ItemList> arrayList) {
         this.arrayList = arrayList;
         this.context = context;
     }
@@ -44,9 +43,10 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.MyViewHolder> 
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
 
         final ItemList itemList = arrayList.get(position);
-
+        final int pos = position + 1;
         holder.artist.setText(itemList.getArtist());
         holder.title.setText(itemList.getTitle());
+        holder.tvCount.setText(String.valueOf(pos));
 
         Transformation transformation = new RoundedTransformationBuilder()
                 .borderColor(Color.WHITE).borderWidthDp(1).cornerRadiusDp(5)
@@ -80,12 +80,14 @@ public class AdapterItem extends RecyclerView.Adapter<AdapterItem.MyViewHolder> 
         RoundedImageView coverImage;
         TextView artist;
         TextView title;
+        TextView tvCount;
 
         MyViewHolder(View view) {
             super(view);
             artist = view.findViewById(R.id.artist);
             title = view.findViewById(R.id.title);
             coverImage = view.findViewById(R.id.cover);
+            tvCount = view.findViewById(R.id.tv_countTop);
         }
     }
 
